@@ -5,3 +5,9 @@
 
 ### files
 - pointer.c
+
+### Problem
+```
+$ ./pointer
+GFEDCBA%              
+```
