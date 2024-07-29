@@ -19,4 +19,11 @@ void main(){
 	for (int i=1; i<len; i+=1){
 		printf("%c", str[i]);
 	}
+
+	printf("\n");
+
+	int a[3][2]={{1,2},{3,4},{5,6}};
+       	printf("%d\n", **a);
+	printf("%d\n", **a+1);
+        printf("%d\n", **a+2);
 }
