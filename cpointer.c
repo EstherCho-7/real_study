@@ -16,7 +16,7 @@ void main(){
 	char str[10]="ABCDEFGH";
 	int len = strlen(str);
 	swap(str, len);
-	for (int i=1; i<len; i+=1){
+	for (int i=1; i<len; i+=2){
 		printf("%c", str[i]);
 	}
 }
