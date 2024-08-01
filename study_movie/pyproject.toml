@@ -5,12 +5,23 @@ description = "Review for study"
 authors = [
     {name = "EstherCho-7", email = "dkgkqm777@gmail.com"},
 ]
-dependencies = []
+dependencies = [
+    "requests>=2.32.3",
+    "pandas>=2.2.2",
+    "numpy>=2.0.1",
+]
 requires-python = ">=3.9"
 readme = "README.md"
 license = {text = "MIT"}
 
-
+[tool.pytest.ini_options]
+pythonpath=[".","src"]
 
 [tool.pdm]
 distribution = false
+
+[tool.pdm.dev-dependencies]
+test = [
+    "pytest>=8.3.2",
+    "pytest-cov>=5.0.0",
+]
