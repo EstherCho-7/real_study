@@ -12,7 +12,7 @@ void swap(char* str, int len) {
 		ed--;
 	}
 }
-void main(){
+int main(){
 	char str[10]="ABCDEFGH";
 	int len = strlen(str);
 	swap(str, len);
@@ -26,4 +26,23 @@ void main(){
        	printf("%d\n", **a);
 	printf("%d\n", **a+1);
         printf("%d\n", **a+2);
+
+	char name[100];	
+	printf("put your name\n");
+	
+	if(fgets(name, sizeof(name), stdin) != NULL){
+		size_t len = strlen(name);
+		if (len > 0 && name[len-1] == '\n'){
+			name[len-1]='\0';
+		}
+	}
+	if (strlen(name)==0) {
+		printf("PUT YOUR NAME IN ALPHABET\n");
+		return 0;
+	}
+	
+	else {
+		printf("WELCOME, %s", name);
+	}	
+	return 0;
 }
