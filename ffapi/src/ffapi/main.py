@@ -9,6 +9,21 @@ df=pd.read_parquet("/home/esthercho/code/ffapi/data") # --> 전역 변수로 선
 def read_root():
     return {"Hello": "World"}
 
+# 추가
+def req(movieCd):
+    base_url="http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json"
+    import os
+    key=os.getenv("MOVIE_API_KEY")
+    url=f"{base_url}?key={key}&movieCd={movieCd}"
+    r=requests.get(url).json()
+    nations=r['movieInfoResult']['movieInfo']['nations']
+    nationNm=nations[0]['nationNm']
+    if nationNm=='한국':
+        nationNm=='K'
+    else:
+        nationNm=='F'
+
+    return nationNm
 
 @app.get("/sample")
 def sample(movie_code: int):
@@ -22,4 +37,7 @@ def movie_meta(movie_code: str):
     if meta_df.empty:
         raise HTTPException(status_code=404, detail="그런 영화 없습니다.")
     r=meta_df.iloc[0].to_dict()
+    if r['repNationCd'] is None:
+        r['repNationCd']=req(movie_cd)
+
     return r
