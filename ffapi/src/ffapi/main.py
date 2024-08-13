@@ -1,6 +1,7 @@
 from typing import Union
 import pandas as pd
 from fastapi import FastAPI, HTTPException
+import requests
 
 app = FastAPI()
 df=pd.read_parquet("/home/esthercho/code/ffapi/data") # --> 전역 변수로 선언 시 성능 향상
@@ -19,9 +20,9 @@ def req(movieCd):
     nations=r['movieInfoResult']['movieInfo']['nations']
     nationNm=nations[0]['nationNm']
     if nationNm=='한국':
-        nationNm=='K'
+        nationNm='K'
     else:
-        nationNm=='F'
+        nationNm='F'
 
     return nationNm
 
@@ -32,8 +33,8 @@ def sample(movie_code: int):
     return r
 
 @app.get("/movie/{movie_code}")
-def movie_meta(movie_code: str):
-    meta_df=df[df['movieCd']==movie_code]
+def movie_meta(movie_cd: str):
+    meta_df=df[df['movieCd']==movie_cd]
     if meta_df.empty:
         raise HTTPException(status_code=404, detail="그런 영화 없습니다.")
     r=meta_df.iloc[0].to_dict()
