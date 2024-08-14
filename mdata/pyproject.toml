@@ -1,6 +1,6 @@
 [project]
 name = "mdata"
-version = "0.1.0"
+version = "0.2.0"
 description = "Default template for PDM package"
 authors = [
     {name = "EstherCho-7", email = "dkgkqm777@gmail.com"},
@@ -10,6 +10,8 @@ requires-python = "==3.11.*"
 readme = "README.md"
 license = {text = "MIT"}
 
+[tool.pytest.ini_options]
+pythonpath="src"
 
 [tool.pdm]
 distribution = false
